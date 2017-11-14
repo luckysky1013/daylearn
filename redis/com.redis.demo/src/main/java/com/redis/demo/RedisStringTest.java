@@ -10,5 +10,7 @@ public class RedisStringTest {
 		String result=jedis.set("name", "qinbaobao");
 		System.out.println("存储的数据为"+jedis.get("name"));
 		System.out.println(result);
+		
+		
 	}
 }
