@@ -13,7 +13,7 @@ import org.junit.Assert;
 public class TestHelloWorld {
 	public static void main(String[] args) {
 		//1获取SecurityManager工厂，此处使用ini配置文件初始化SecurityManager工厂
-		Factory<SecurityManager> factory=new IniSecurityManagerFactory("classpath:shiro.ini");
+		Factory<SecurityManager> factory=new IniSecurityManagerFactory("classpath:shiro.realm.ini");
 		//2.获取SecurityManager对象，由工厂创建
 		SecurityManager securityManager=factory.getInstance();
 		//3.将SecurityManager对象绑定给SecurityUtils（安全工具类）
@@ -21,7 +21,7 @@ public class TestHelloWorld {
 		//4.获取subject对象
 		org.apache.shiro.subject.Subject subject=SecurityUtils.getSubject();
 //		5.创建用户名密码身份验证token（即用户身份/凭证）
-		UsernamePasswordToken token=new UsernamePasswordToken("zhang", "ddd");
+		UsernamePasswordToken token=new UsernamePasswordToken("zhang", "123");
 		
 		try{
 			//登陆，验证身份
