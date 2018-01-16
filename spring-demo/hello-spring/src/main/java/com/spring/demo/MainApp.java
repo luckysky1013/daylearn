@@ -19,11 +19,9 @@ public class MainApp {
         XmlBeanFactory xmlBeanFactory=new XmlBeanFactory(new ClassPathResource("beans.xml"));
         HelloWorld obj1=(HelloWorld) xmlBeanFactory.getBean("helloWorld");
         obj1.getMessage();*/
-
         AbstractApplicationContext context=new ClassPathXmlApplicationContext("beans.xml");
         HelloWorld objA=(HelloWorld) context.getBean("test");
         objA.getMessage();
         context.registerShutdownHook();
-
     }
 }

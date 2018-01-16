@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+    <aop:config>
+        <aop:aspect id="log" ref="logging">
+            <!--表达式的写法
+            任意公共方法的执行：
+            execution(public * *(..))
+            任何一个以“set”开始的方法的执行：
+            execution(* set*(..))
+            AccountService 接口的任意方法的执行：
+            execution(* com.xyz.service.AccountService.*(..))
+            定义在service包里的任意方法的执行：
+            execution(* com.xyz.service.*.*(..))
+            定义在service包和所有子包里的任意类的任意方法的执行：
+            execution(* com.xyz.service..*.*(..))
+            定义在pointcutexp包和所有子包里的JoinPointObjP2类的任意方法的执行：
+             execution(* com.test.spring.aop.pointcutexp..JoinPointObjP2.*(..))")-->
+            <aop:pointcut id="selectAll" expression="execution(* com.spring.xmlAop.*.*(..))"/>
+            <aop:before pointcut-ref="selectAll" method="beforeAdvice"/>
+            <aop:after method="afterAdvice" pointcut-ref="selectAll"/>
+            <aop:after-returning method="afterReturningAdvice" pointcut-ref="selectAll" returning="retVal"/>
+            <aop:after-throwing method="AfterThrowingAdvice" pointcut-ref="selectAll" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+
+    <bean id="people" class="com.spring.xmlAop.People">
+        <property name="name" value="test"/>
+        <property name="age" value="21"/>
+    </bean>
+
+    <bean id="logging" class="com.spring.xmlAop.Logging"></bean>
+</beans>

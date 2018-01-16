@@ -18,12 +18,12 @@ public class HelloWorld {
 
     public HelloWorld() {
     }
-
+    //初始化方法
     public void init(){
-        System.out.println("bean is going through init");
+        System.out.println("bean 初始化方法");
     }
-
+    //销毁方法
     public void destory(){
-        System.out.println("bean will destory now");
+        System.out.println("bean 销毁方法");
     }
 }

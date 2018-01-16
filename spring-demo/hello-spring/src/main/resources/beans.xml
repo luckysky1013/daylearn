@@ -2,17 +2,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--通过构造器方法创建bean，定义初始化方法initmethod 和销毁方法-->
+ <!--   <bean id="test" class="com.spring.demo.HelloWorld" init-method="init" destroy-method="destory">
+        <property name="message" value="hello world 1111"></property>
+     </bean>-->
+    <!--自定义bean的后置处理器-->
+    <bean class="com.spring.demo.MyBeanProcessor"/>
 
-    <bean id="helloWorld" class="com.spring.demo.HelloWorld">
-        <property name="message" value="hello world"/>
+    <!--自定义spring容器后置处理器-->
+    <bean class="com.spring.demo.MyBeanFactoryProcessor"/>
+
+    <bean id="eventDemo" class="com.spring.event.EventDemo">
+        <property name="message" value="event demo"/>
     </bean>
 
-    <bean id="singleton" class="com.spring.demo.HelloWorld" scope="singleton">
-    </bean>
+    <bean id="cStartEventHandler" class="com.spring.event.CStratEventHandler"/>
+    <bean id="cStopEventHandler" class="com.spring.event.CStopEventHandler"/>
 
-    <bean id="prototype" class="com.spring.demo.HelloWorld" scope="prototype"></bean>
+    <bean id="customEventHandler" class="com.spring.customevent.CustomEventHandler"/>
 
-    <bean id="test" class="com.spring.demo.HelloWorld" init-method="init" destroy-method="destory">
-        <property name="message" value="hello world"></property>
-     </bean>
+    <bean id="customEventPublisher" class="com.spring.customevent.CustomEventPublisher"/>
+
 </beans>
