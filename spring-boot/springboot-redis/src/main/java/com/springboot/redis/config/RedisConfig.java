@@ -1,4 +1,4 @@
-package com.example.springboot.cache;
+package com.springboot.redis.config;
 
 
 import java.lang.reflect.Method;
@@ -66,6 +66,7 @@ public class RedisConfig extends CachingConfigurerSupport {
                 for (Object obj : params) {
                     sb.append(obj.toString());
                 }
+                System.out.println("调用redis缓存 key " + sb.toString());
                 return sb.toString();
             }
         };

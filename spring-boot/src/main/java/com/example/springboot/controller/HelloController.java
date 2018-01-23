@@ -1,5 +1,9 @@
 package com.example.springboot.controller;
 
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,17 +43,27 @@ public class HelloController {
     @RequestMapping(value = "/findById")
     public User findById(Long id) {
         //从数据库查询
-        System.out.println(userService.getById(id).getUserName());
+       // System.out.println(userService.getById(id).getUserName());
 
         //从缓存获取
-        System.out.println(userService.getById(id).getUserName());
+      //  System.out.println(userService.getById(id).getUserName());
 
         //刷新缓存
-        userService.update();
+       // userService.update();
 
         //从数据库获取
         User user = userService.getById(id);
         System.out.println(user.getUserName());
         return user;
+    }
+
+    @RequestMapping("/uid")
+    String uid(HttpSession session) {
+        UUID uid = (UUID) session.getAttribute("uid");
+        if (uid == null) {
+            uid = UUID.randomUUID();
+        }
+        session.setAttribute("uid", uid);
+        return session.getId();
     }
 }
