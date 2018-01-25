@@ -10,6 +10,8 @@ public class Account {
     private String name;
     private double money;
 
+
+
     public int getId() {
         return id;
     }

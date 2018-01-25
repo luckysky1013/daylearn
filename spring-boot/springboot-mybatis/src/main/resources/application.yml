@@ -1,0 +1,6 @@
+#####多数据源配置
+spring:
+  profiles:
+    active: dev
+mybatis:
+  mapper-locations: classpath*:/mapper/*Mapper.xml
