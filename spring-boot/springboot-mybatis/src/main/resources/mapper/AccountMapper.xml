@@ -4,9 +4,7 @@
 <mapper namespace="com.springboot.mybatis.dao.AccountXmlMapper">
     <insert id="insert" parameterType="com.springboot.mybatis.domain.Account">
         INSERT  INTO  account (name,money) VALUES  (#{account.name},#{account.money})
-
     </insert>
-
     <insert id="insertList">
              INSERT  INTO  account (name,money) VALUES
              <foreach collection="accounts" item="account" index="index" separator=",">
@@ -16,20 +14,15 @@
                  )
              </foreach>
     </insert>
-
     <update id="update" >
         UPDATE  account SET  name=#{name} ,money=#{monet} WHERE  id=#{id}
     </update>
-
-
     <delete id="delete" parameterType="int">
         DELETE  FROM  account WHERE  id= #{id}
     </delete>
-
     <select id="findAccount" parameterType="int" resultType="com.springboot.mybatis.domain.Account">
         SELECT  * FROM  account WHERE  id=#{id}
     </select>
-
     <select id="findAll" resultType="com.springboot.mybatis.domain.Account">
         SELECT  * FROM  account
     </select>

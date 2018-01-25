@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.mybatis.dao.AccountMapper;
 import com.springboot.mybatis.dao.AccountXmlMapper;
 import com.springboot.mybatis.domain.Account;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author liujian
@@ -35,5 +36,12 @@ public class AccountXmlService {
     }
     public List<Account> findAccountList() {
         return accountMapper.findAll();
+    }
+
+    @Transactional
+    public void transfer() throws RuntimeException{
+        accountMapper.update("test1",1000,1);//用户1减10块 用户2加10块
+        int i=1/0;
+        accountMapper.update("test2",1000,2);
     }
 }
