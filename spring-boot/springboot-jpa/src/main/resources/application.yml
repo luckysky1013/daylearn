@@ -10,4 +10,9 @@ spring:
         ddl-auto: update
         show-sql: true
 
+com:
+  asq:
+    name: liujian
+    title: spring boot
+
 

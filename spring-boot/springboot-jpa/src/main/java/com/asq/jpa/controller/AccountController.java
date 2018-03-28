@@ -2,6 +2,7 @@ package com.asq.jpa.controller;
 
 import java.util.List;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,43 +15,55 @@ import com.asq.jpa.domain.Account;
  */
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping(value = "accounts")
 public class AccountController {
     @Autowired
     AccountDao accountDao;
 
-    @RequestMapping(value = "/list",method = RequestMethod.GET)
+    /**
+     * 查询全部
+     * @return
+     */
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public List<Account> getAccounts(){
         return accountDao.findAll();
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    public String addAccount(@RequestParam(value = "name") String name,
-                             @RequestParam(value = "money")double money){
-        Account account=new Account();
-        account.setName(name);
-        account.setMoney(money);
+    /**
+     * 增加
+     * @param account
+     * @return
+     */
+    @RequestMapping(value = "/",method = RequestMethod.POST)
+    public String addAccount(@ModelAttribute Account account){
         Account account1=accountDao.saveAndFlush(account);
-
         return account1.toString();
-
     }
 
-    @RequestMapping(value = "/update/{id}",method = RequestMethod.PUT)
+    /**
+     * PUT 更新全部  PATCH 更新部分信息
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public String updateAccoumt(@PathVariable("id") int id,
-                                @RequestParam(name = "name") String name,
-                                @RequestParam(name = "money")int money){
-        Account account = new Account();
-        account.setMoney(money);
-        account.setName(name);
-        Account account1 = accountDao.save(account);
-        return account1.toString();
+                                @ModelAttribute Account account){
+        Account account1=accountDao.getOne(id);
+        account1.setMoney(account.getMoney());
+        account1.setName(account.getName());
+        accountDao.save(account);
+        return "success";
     }
 
-    @RequestMapping(value = "/findOne/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public  Account getAccountById(@PathVariable("id") int id){
         return accountDao.findOne(id);
     }
 
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public List<Account> delete(@PathVariable("id")int id){
+        accountDao.delete(id);
+        return accountDao.findAll();
+    }
 }
