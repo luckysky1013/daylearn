@@ -24,7 +24,7 @@ public class AccountController {
      * 查询全部
      * @return
      */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<Account> getAccounts(){
         return accountDao.findAll();
     }

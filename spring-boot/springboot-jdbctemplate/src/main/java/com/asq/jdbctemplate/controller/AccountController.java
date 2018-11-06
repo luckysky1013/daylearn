@@ -23,7 +23,7 @@ public class AccountController {
         return accountService.findAccountList();
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/",method = RequestMethod.POST)
     public String addAccount(@RequestParam(value = "name") String name,
                              @RequestParam(value = "money")double money){
         Account account=new Account();

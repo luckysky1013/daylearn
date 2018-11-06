@@ -1,0 +1,17 @@
+spring:
+#配置mysql 数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    data-username: root
+    password: 123456
+#配置jpa
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #jpa的命名策略  表名和字段是否会自动区分大小写然后加下划线
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+

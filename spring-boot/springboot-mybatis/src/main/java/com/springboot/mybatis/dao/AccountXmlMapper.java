@@ -9,6 +9,7 @@ import com.springboot.mybatis.domain.Account;
 /**
  * @author liujian
  * @date 2018/1/25
+ * 通过配置文件方式
  */
 @Mapper
 public interface AccountXmlMapper {
