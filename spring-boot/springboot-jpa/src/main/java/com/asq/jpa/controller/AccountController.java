@@ -35,7 +35,8 @@ public class AccountController {
      * @return
      */
     @RequestMapping(value = "/",method = RequestMethod.POST)
-    public String addAccount(@ModelAttribute Account account){
+    @ResponseBody
+    public String addAccount(@RequestBody Account account){
         Account account1=accountDao.saveAndFlush(account);
         return account1.toString();
     }

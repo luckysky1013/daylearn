@@ -31,10 +31,15 @@ public class AccountController {
         return accountService.findAccount(id);
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String updateAccount(@PathVariable("id") int id, @RequestParam(value = "name", required = true) String name,
                                 @RequestParam(value = "money", required = true) double money) {
-        int t= accountService.update(name,money,id);
+        Account account=new Account();
+        account.setMoney(money);
+        account.setName(name);
+        account.setId(id);
+        int t=accountService.updateBy(account);
+//        int t= accountService.update(name,money,id);
         if(t==1) {
             return "success";
         }else {
@@ -65,4 +70,5 @@ public class AccountController {
             return "fail";
         }
     }
+
 }

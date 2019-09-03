@@ -14,5 +14,8 @@ com:
   asq:
     name: liujian
     title: spring boot
+server:
+  port: 8081
+
 
 

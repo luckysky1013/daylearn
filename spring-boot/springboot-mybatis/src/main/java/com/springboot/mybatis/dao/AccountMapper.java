@@ -29,4 +29,6 @@ public interface AccountMapper {
     @Select("select id, name as name, money as money from account")
     public List<Account>  findAll();
 
+    @Update("UPDATE  account SET  if test='' name=#{name} ,money=#{money} WHERE id=#{id}")
+    public int updateBy(Account account);
 }

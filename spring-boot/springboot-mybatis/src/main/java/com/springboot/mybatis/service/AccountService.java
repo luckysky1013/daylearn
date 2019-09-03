@@ -32,4 +32,8 @@ public class AccountService {
     public List<Account> findAccountList() {
         return accountMapper.findAll();
     }
+
+    public int updateBy(Account account) {
+        return accountMapper.updateBy(account);
+    }
 }
